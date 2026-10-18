@@ -1,0 +1,139 @@
+{
+  "version": "2",
+  "flowTitle": "File Ingestion Pipeline",
+  "trigger": {
+    "type": "FORM",
+    "displayName": "File Processing Trigger",
+    "settings": {
+      "description": "",
+      "inputs": [
+        {
+          "id": "fileUrl",
+          "title": "File URL",
+          "description": "URL or path to the file to process",
+          "type": "short_text"
+        },
+        {
+          "id": "fileName",
+          "title": "File Name",
+          "description": "Name of the file",
+          "type": "short_text"
+        },
+        {
+          "id": "sourceType",
+          "title": "Source Type",
+          "description": "Where is this file coming from?",
+          "type": "static_dropdown",
+          "options": [
+            {
+              "id": "google_drive",
+              "type": "text",
+              "value": "google_drive"
+            },
+            {
+              "id": "url",
+              "type": "text",
+              "value": "url"
+            },
+            {
+              "id": "manual",
+              "type": "text",
+              "value": "manual"
+            }
+          ]
+        }
+      ],
+      "isEndPageEnabled": false
+    }
+  },
+  "actions": [
+    {
+      "name": "550e8400-e29b-41d4-a716-446655440020",
+      "valid": true,
+      "displayName": "Extract File Content",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-media",
+        "pieceVersion": "1.0.0",
+        "actionName": "website.extract",
+        "input": {
+          "websiteUrl": "{{ trigger[\"fileUrl\"] }}",
+          "errorBehavior": "continue"
+        }
+      }
+    },
+    {
+      "name": "550e8400-e29b-41d4-a716-446655440021",
+      "valid": false,
+      "displayName": "Create Source File Record",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-taskade",
+        "pieceVersion": "1.0.0",
+        "actionName": "task.create",
+        "input": {
+          "fields": {
+            "@src01": {
+              "data": {
+                "value": "{{ trigger[\"sourceType\"] }}"
+              },
+              "rank": "0",
+              "fieldId": "@src01"
+            },
+            "@src02": {
+              "data": {
+                "value": "{{ trigger[\"fileUrl\"] }}"
+              },
+              "rank": "1",
+              "fieldId": "@src02"
+            },
+            "@src08": {
+              "data": {
+                "value": "{{ 550e8400-e29b-41d4-a716-446655440020[\"content\"] }}"
+              },
+              "rank": "2",
+              "fieldId": "@src08"
+            }
+          },
+          "content": "{{ trigger[\"fileName\"] }}",
+          "position": "beforeend",
+          "projectId": {
+            "type": "flow-template-variable-input-type",
+            "id": "KtB2PkoCLznXqe3v"
+          }
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "type": "http_response",
+      "body": {
+        "type": "json",
+        "data": {
+          "type": "basic",
+          "payload": [
+            {
+              "success": "true"
+            },
+            {
+              "message": "File processed successfully"
+            },
+            {
+              "sourceFileId": "{{ 550e8400-e29b-41d4-a716-446655440021[\"nodeId\"] }}"
+            }
+          ]
+        }
+      },
+      "key": "trigger"
+    }
+  ],
+  "variables": {
+    "KtB2PkoCLznXqe3v": {
+      "id": "KtB2PkoCLznXqe3v",
+      "rank": "V",
+      "type": "string",
+      "format": "taskade-project-id"
+    }
+  }
+}

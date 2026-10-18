@@ -1,0 +1,192 @@
+{
+  "version": "2",
+  "flowTitle": "Auto File Organizer - Inbox Processing",
+  "trigger": {
+    "valid": true,
+    "displayName": "File Organization Trigger",
+    "type": "MANUAL",
+    "settings": {
+      "inputUiInfo": {},
+      "paramsSchema": {
+        "type": "object",
+        "properties": {
+          "fileId": {
+            "type": "string",
+            "description": "Input for fileId"
+          },
+          "fileName": {
+            "type": "string",
+            "description": "Input for fileName"
+          },
+          "inboxFolderId": {
+            "type": "string",
+            "description": "Input for inboxFolderId"
+          },
+          "archiveFolderId": {
+            "type": "string",
+            "description": "Input for archiveFolderId"
+          },
+          "personalFolderId": {
+            "type": "string",
+            "description": "Input for personalFolderId"
+          },
+          "processedFolderId": {
+            "type": "string",
+            "description": "Input for processedFolderId"
+          },
+          "masterDocsFolderId": {
+            "type": "string",
+            "description": "Input for masterDocsFolderId"
+          },
+          "quarantineFolderId": {
+            "type": "string",
+            "description": "Input for quarantineFolderId"
+          },
+          "professionalFolderId": {
+            "type": "string",
+            "description": "Input for professionalFolderId"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "actions": [
+    {
+      "name": "analyze-file",
+      "valid": true,
+      "displayName": "Analyze File Content and Type",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "pieceVersion": "1.0.0",
+        "actionName": "ai.categorize",
+        "input": {
+          "input": "Analyze this file and categorize it:\nFile Name: {{ trigger[\"fileName\"] }}\n\nBased on the file name, extension, and context, categorize this file into one of these categories:\n- personal: Personal documents, photos, private files\n- professional: Work documents, business files, presentations\n- master-document: Important reference documents, templates, policies\n- archive: Old files that should be archived\n- quarantine: Suspicious files or files that need review\n\nProvide only the category name as the result.",
+          "output": "personal,professional,master-document,archive,quarantine"
+        }
+      }
+    },
+    {
+      "name": "categorization-branch",
+      "valid": true,
+      "displayName": "File Categorization",
+      "type": "BRANCH",
+      "settings": {},
+      "paths": [
+        {
+          "name": "personal-path",
+          "valid": true,
+          "displayName": "Personal Files",
+          "type": "BRANCH_PATH",
+          "settings": {
+            "ruleset": {
+              "type": "CUSTOM",
+              "input": {
+                "type": "or",
+                "value": [
+                  {
+                    "type": "and",
+                    "value": [
+                      {
+                        "condition": "text_contains",
+                        "id": "68335e54-66b0-4b3d-891b-b982f06f8dfc",
+                        "data": "{{ analyze-file[\"result\"] }}",
+                        "comparator": "personal"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "actions": []
+        },
+        {
+          "name": "professional-path",
+          "valid": true,
+          "displayName": "Professional Files",
+          "type": "BRANCH_PATH",
+          "settings": {
+            "ruleset": {
+              "type": "CUSTOM",
+              "input": {
+                "type": "or",
+                "value": [
+                  {
+                    "type": "and",
+                    "value": [
+                      {
+                        "condition": "text_contains",
+                        "id": "c804fe3f-6b1e-4584-88e5-290966c4fc42",
+                        "data": "{{ analyze-file[\"result\"] }}",
+                        "comparator": "professional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "actions": []
+        },
+        {
+          "name": "master-docs-path",
+          "valid": true,
+          "displayName": "Master Documents",
+          "type": "BRANCH_PATH",
+          "settings": {
+            "ruleset": {
+              "type": "CUSTOM",
+              "input": {
+                "type": "or",
+                "value": [
+                  {
+                    "type": "and",
+                    "value": [
+                      {
+                        "condition": "text_contains",
+                        "id": "1a1f7310-4691-4eb5-9767-3b70726b0fbf",
+                        "data": "{{ analyze-file[\"result\"] }}",
+                        "comparator": "master-document"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "actions": []
+        },
+        {
+          "name": "quarantine-path",
+          "valid": true,
+          "displayName": "Quarantine Files",
+          "type": "BRANCH_PATH",
+          "settings": {
+            "ruleset": {
+              "type": "CUSTOM",
+              "input": {
+                "type": "or",
+                "value": [
+                  {
+                    "type": "and",
+                    "value": [
+                      {
+                        "condition": "text_contains",
+                        "id": "bc65be5c-8027-47d7-bb15-634af4cc453a",
+                        "data": "{{ analyze-file[\"result\"] }}",
+                        "comparator": "quarantine"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "actions": []
+        }
+      ]
+    }
+  ]
+}

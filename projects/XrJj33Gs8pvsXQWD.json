@@ -1,0 +1,499 @@
+{
+  "root": {
+    "type": "root",
+    "children": [
+      {
+        "type": "text",
+        "id": "550e8400-e29b-41d4-a716-446655440016",
+        "text": {
+          "ops": [
+            {
+              "insert": "Link Inbox"
+            },
+            {
+              "insert": "\n",
+              "attributes": {
+                "paragraph": true
+              }
+            }
+          ]
+        },
+        "format": null,
+        "collapsed": false,
+        "completed": false,
+        "children": [
+          {
+            "type": "text",
+            "id": "550e8400-e29b-41d4-a716-446655440017",
+            "text": {
+              "ops": [
+                {
+                  "insert": "📥 Link Inbox",
+                  "attributes": {}
+                },
+                {
+                  "insert": "\n",
+                  "attributes": {
+                    "paragraph": true
+                  }
+                }
+              ]
+            },
+            "format": {
+              "node": "h1",
+              "children": null
+            },
+            "collapsed": false,
+            "completed": false,
+            "children": [
+              {
+                "type": "text",
+                "id": "550e8400-e29b-41d4-a716-446655440018",
+                "text": {
+                  "ops": [
+                    {
+                      "insert": "Submit URLs and links here for processing. The system will automatically extract content, categorize, and add to the knowledge base.",
+                      "attributes": {}
+                    },
+                    {
+                      "insert": "\n",
+                      "attributes": {
+                        "paragraph": true
+                      }
+                    }
+                  ]
+                },
+                "format": {
+                  "node": "text",
+                  "children": null
+                },
+                "collapsed": false,
+                "completed": false,
+                "children": []
+              },
+              {
+                "type": "text",
+                "id": "550e8400-e29b-41d4-a716-446655440025",
+                "text": {
+                  "ops": [
+                    {
+                      "insert": "Professional LinkedIn Article on AI in Business",
+                      "attributes": {}
+                    },
+                    {
+                      "insert": "\n",
+                      "attributes": {
+                        "paragraph": true
+                      }
+                    }
+                  ]
+                },
+                "format": {
+                  "node": "checkbox",
+                  "children": null
+                },
+                "collapsed": false,
+                "completed": false,
+                "attributes": {
+                  "@link01": "https://linkedin.com/pulse/ai-transforming-business-andries-liebenberg",
+                  "@link02": "AI Transforming Business Landscape",
+                  "@link03": "Comprehensive analysis of AI impact on modern business operations",
+                  "@link04": {
+                    "type": "Select",
+                    "optionId": "completed"
+                  },
+                  "@link05": {
+                    "type": "DateTime",
+                    "dateTime": {
+                      "date": "2024-01-15"
+                    }
+                  },
+                  "@link06": "Andries Liebenberg"
+                },
+                "children": []
+              },
+              {
+                "type": "text",
+                "id": "550e8400-e29b-41d4-a716-446655440034",
+                "text": {
+                  "ops": [
+                    {
+                      "insert": "Machine Learning in Healthcare: Revolutionary Applications",
+                      "attributes": {}
+                    },
+                    {
+                      "insert": "\n",
+                      "attributes": {
+                        "paragraph": true
+                      }
+                    }
+                  ]
+                },
+                "format": {
+                  "node": "checkbox",
+                  "children": null
+                },
+                "collapsed": false,
+                "completed": false,
+                "attributes": {
+                  "@link01": "https://www.linkedin.com/pulse/machine-learning-healthcare-revolutionary-applications",
+                  "@link02": "Machine Learning in Healthcare: Revolutionary Applications",
+                  "@link03": "Comprehensive exploration of machine learning applications revolutionizing healthcare delivery, from diagnostic imaging to personalized treatment protocols. Examines real-world implementations, regulatory considerations, and the transformative potential of AI-driven medical technologies in improving patient outcomes.",
+                  "@link04": {
+                    "type": "Select",
+                    "optionId": "pending"
+                  },
+                  "@link05": {
+                    "type": "DateTime",
+                    "dateTime": {
+                      "date": "2024-01-25"
+                    }
+                  },
+                  "@link06": "Andries Liebenberg"
+                },
+                "children": []
+              },
+              {
+                "type": "text",
+                "id": "550e8400-e29b-41d4-a716-446655440035",
+                "text": {
+                  "ops": [
+                    {
+                      "insert": "Digital Transformation Strategy Guide 2024",
+                      "attributes": {}
+                    },
+                    {
+                      "insert": "\n",
+                      "attributes": {
+                        "paragraph": true
+                      }
+                    }
+                  ]
+                },
+                "format": {
+                  "node": "checkbox",
+                  "children": null
+                },
+                "collapsed": false,
+                "completed": false,
+                "attributes": {
+                  "@link01": "https://example.com/digital-transformation-guide-2024",
+                  "@link02": "Digital Transformation Strategy Guide 2024",
+                  "@link03": "Strategic guide to digital transformation initiatives covering organizational change management, technology adoption frameworks, and implementation best practices. Provides actionable insights for leaders navigating digital modernization while maintaining operational excellence and competitive advantage.",
+                  "@link04": {
+                    "type": "Select",
+                    "optionId": "pending"
+                  },
+                  "@link05": {
+                    "type": "DateTime",
+                    "dateTime": {
+                      "date": "2024-01-26"
+                    }
+                  },
+                  "@link06": "Andries Liebenberg"
+                },
+                "children": []
+              },
+              {
+                "type": "text",
+                "id": "550e8400-e29b-41d4-a716-446655440026",
+                "text": {
+                  "ops": [
+                    {
+                      "insert": "Industry Report: Digital Transformation Trends",
+                      "attributes": {}
+                    },
+                    {
+                      "insert": "\n",
+                      "attributes": {
+                        "paragraph": true
+                      }
+                    }
+                  ]
+                },
+                "format": {
+                  "node": "checkbox",
+                  "children": null
+                },
+                "collapsed": false,
+                "completed": false,
+                "attributes": {
+                  "@link01": "https://example.com/digital-transformation-2024",
+                  "@link02": "Digital Transformation Trends 2024",
+                  "@link03": "Annual report on digital transformation across industries",
+                  "@link04": {
+                    "type": "Select",
+                    "optionId": "processing"
+                  },
+                  "@link05": {
+                    "type": "DateTime",
+                    "dateTime": {
+                      "date": "2024-01-20"
+                    }
+                  },
+                  "@link06": "Andries Liebenberg"
+                },
+                "children": []
+              },
+              {
+                "type": "text",
+                "id": "550e8400-e29b-41d4-a716-446655440019",
+                "text": {
+                  "ops": [
+                    {
+                      "insert": "Sample LinkedIn Article",
+                      "attributes": {}
+                    },
+                    {
+                      "insert": "\n",
+                      "attributes": {
+                        "paragraph": true
+                      }
+                    }
+                  ]
+                },
+                "format": {
+                  "node": "checkbox",
+                  "children": null
+                },
+                "collapsed": false,
+                "completed": false,
+                "attributes": {
+                  "@link01": "https://linkedin.com/pulse/sample-article",
+                  "@link02": "Sample LinkedIn Article",
+                  "@link03": "Example article for testing",
+                  "@link04": {
+                    "type": "Select",
+                    "optionId": "pending"
+                  }
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "id": "7074aa33-8e9a-4cc3-8590-897d21e75d72",
+            "text": {
+              "ops": [
+                {
+                  "insert": "Andries Web Site"
+                },
+                {
+                  "insert": "\n",
+                  "attributes": {
+                    "paragraph": true
+                  }
+                }
+              ]
+            },
+            "format": null,
+            "collapsed": false,
+            "completed": false,
+            "attributes": {
+              "@link01": "https://profile.an3s.info",
+              "@link02": "Andries Web Site",
+              "@link03": "",
+              "@link04": {
+                "type": "Select",
+                "optionId": "pending"
+              },
+              "@link05": {
+                "type": "DateTime",
+                "dateTime": {
+                  "date": "2025-08-31",
+                  "time": "06:43:09",
+                  "timezone": "Etc/UTC"
+                }
+              },
+              "@link06": "Andries Liebenberg"
+            },
+            "children": []
+          }
+        ]
+      }
+    ],
+    "views": {
+      "table": {
+        "id": "table",
+        "type": "table",
+        "rank": "V",
+        "columns": {
+          "/text": {
+            "id": "/text",
+            "fieldPath": "/text",
+            "rank": "7",
+            "width": 480
+          },
+          "/attributes/agent": {
+            "id": "/attributes/agent",
+            "fieldPath": "/attributes/agent",
+            "rank": "A",
+            "hidden": true
+          },
+          "/attributes/date": {
+            "id": "/attributes/date",
+            "fieldPath": "/attributes/date",
+            "rank": "F"
+          },
+          "/attributes/assignee": {
+            "id": "/attributes/assignee",
+            "fieldPath": "/attributes/assignee",
+            "rank": "N"
+          },
+          "/attributes/comment": {
+            "id": "/attributes/comment",
+            "fieldPath": "/attributes/comment",
+            "rank": "V",
+            "hidden": true
+          },
+          "/attributes/reaction": {
+            "id": "/attributes/reaction",
+            "fieldPath": "/attributes/reaction",
+            "rank": "c",
+            "hidden": true
+          },
+          "/attributes/timer": {
+            "id": "/attributes/timer",
+            "fieldPath": "/attributes/timer",
+            "rank": "k",
+            "hidden": true
+          },
+          "/attributes/media": {
+            "id": "/attributes/media",
+            "fieldPath": "/attributes/media",
+            "rank": "s",
+            "hidden": true
+          },
+          "/attributes/created/at": {
+            "id": "/attributes/created/at",
+            "fieldPath": "/attributes/created/at",
+            "rank": "t",
+            "hidden": true
+          },
+          "/attributes/created/by": {
+            "id": "/attributes/created/by",
+            "fieldPath": "/attributes/created/by",
+            "rank": "u",
+            "hidden": true
+          },
+          "/attributes/updated/at": {
+            "id": "/attributes/updated/at",
+            "fieldPath": "/attributes/updated/at",
+            "rank": "vF",
+            "hidden": true
+          },
+          "/attributes/updated/by": {
+            "id": "/attributes/updated/by",
+            "fieldPath": "/attributes/updated/by",
+            "rank": "wF",
+            "hidden": true
+          },
+          "/attributes/completed/at": {
+            "id": "/attributes/completed/at",
+            "fieldPath": "/attributes/completed/at",
+            "rank": "x",
+            "hidden": true
+          },
+          "/attributes/completed/by": {
+            "id": "/attributes/completed/by",
+            "fieldPath": "/attributes/completed/by",
+            "rank": "y",
+            "hidden": true
+          },
+          "/attributes/@link01": {
+            "id": "/attributes/@link01",
+            "fieldPath": "/attributes/@link01",
+            "rank": "z",
+            "hidden": false
+          },
+          "/attributes/@link02": {
+            "id": "/attributes/@link02",
+            "fieldPath": "/attributes/@link02",
+            "rank": "zV",
+            "hidden": false
+          },
+          "/attributes/@link03": {
+            "id": "/attributes/@link03",
+            "fieldPath": "/attributes/@link03",
+            "rank": "zk",
+            "hidden": false
+          },
+          "/attributes/@link04": {
+            "id": "/attributes/@link04",
+            "fieldPath": "/attributes/@link04",
+            "rank": "zs",
+            "hidden": false
+          },
+          "/attributes/@link05": {
+            "id": "/attributes/@link05",
+            "fieldPath": "/attributes/@link05",
+            "rank": "zw",
+            "hidden": false
+          },
+          "/attributes/@link06": {
+            "id": "/attributes/@link06",
+            "fieldPath": "/attributes/@link06",
+            "rank": "zy",
+            "hidden": false
+          }
+        }
+      }
+    },
+    "fields": {
+      "@link01": {
+        "type": "string",
+        "displayName": "URL"
+      },
+      "@link02": {
+        "type": "string",
+        "displayName": "Title"
+      },
+      "@link03": {
+        "type": "string",
+        "displayName": "Description"
+      },
+      "@link04": {
+        "type": "Select",
+        "displayName": "Status",
+        "options": {
+          "pending": {
+            "id": "pending",
+            "name": "Pending Processing",
+            "color": "#fbbf24",
+            "rank": "0"
+          },
+          "processing": {
+            "id": "processing",
+            "name": "Processing",
+            "color": "#3b82f6",
+            "rank": "1"
+          },
+          "completed": {
+            "id": "completed",
+            "name": "Processed",
+            "color": "#10b981",
+            "rank": "2"
+          },
+          "failed": {
+            "id": "failed",
+            "name": "Failed",
+            "color": "#ef4444",
+            "rank": "3"
+          }
+        }
+      },
+      "@link05": {
+        "type": "DateTime",
+        "title": "Date Added"
+      },
+      "@link06": {
+        "type": "string",
+        "displayName": "Added By"
+      }
+    }
+  },
+  "preferences": {
+    "defaultView": "table"
+  }
+}

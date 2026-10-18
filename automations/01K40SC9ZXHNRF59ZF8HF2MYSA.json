@@ -1,0 +1,67 @@
+{
+  "version": "2",
+  "flowTitle": "Auto AI Description - Link Added",
+  "trigger": {
+    "valid": false,
+    "displayName": "New Link Added to Inbox",
+    "type": "PIECE_TRIGGER",
+    "settings": {
+      "pieceName": "@taskade/automade-internalpiece-taskade",
+      "pieceVersion": "1.0.0",
+      "triggerName": "task.added",
+      "input": {}
+    }
+  },
+  "actions": [
+    {
+      "name": "550e8400-e29b-41d4-a716-446655440042",
+      "valid": true,
+      "displayName": "Generate AI Description",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "pieceVersion": "1.0.0",
+        "actionName": "ai.generate",
+        "input": {
+          "input": "Source Title: {{ trigger[\"nodeText\"] }}\nContent: Link added to knowledge base for processing and analysis",
+          "prompt": "You are an expert content analyst. Analyze the following source and generate a professional, concise description (2-3 sentences) that captures the key themes, purpose, and value for a knowledge management system.\n\nGenerate a description that:\n1. Summarizes the main topic and purpose\n2. Highlights key insights or value propositions\n3. Uses professional, clear language\n4. Is exactly 2-3 sentences\n5. Focuses on what makes this content valuable for professional reference\n\nReturn only the description, no additional text."
+        }
+      }
+    },
+    {
+      "name": "550e8400-e29b-41d4-a716-446655440043",
+      "valid": false,
+      "displayName": "Update Link with AI Description",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-taskade",
+        "pieceVersion": "1.0.0",
+        "actionName": "updateCustomFields",
+        "input": {
+          "fields": {
+            "@link03": {
+              "data": {
+                "value": "{{ 550e8400-e29b-41d4-a716-446655440042[\"result\"] }}"
+              },
+              "rank": "0",
+              "fieldId": "@link03"
+            }
+          },
+          "nodeId": "{{ trigger[\"nodeId\"] }}",
+          "projectId": {
+            "type": "flow-template-variable-input-type",
+            "id": "XrJj33Gs8pvsXQWD"
+          }
+        }
+      }
+    }
+  ],
+  "variables": {
+    "XrJj33Gs8pvsXQWD": {
+      "id": "XrJj33Gs8pvsXQWD",
+      "rank": "V",
+      "type": "string",
+      "format": "taskade-project-id"
+    }
+  }
+}

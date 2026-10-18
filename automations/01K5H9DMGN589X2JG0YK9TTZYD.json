@@ -1,0 +1,459 @@
+{
+  "version": "2",
+  "flowTitle": "Voice Note AI Processing & Categorization",
+  "trigger": {
+    "type": "FORM",
+    "displayName": "Voice Note Processing Trigger",
+    "settings": {
+      "description": "",
+      "inputs": [
+        {
+          "id": "audioUrl",
+          "title": "Audio URL",
+          "description": "URL or path to the audio file",
+          "type": "short_text"
+        },
+        {
+          "id": "duration",
+          "title": "Input for duration",
+          "description": "",
+          "type": "number"
+        },
+        {
+          "id": "language",
+          "title": "Input for language",
+          "description": "",
+          "type": "static_dropdown",
+          "options": [
+            {
+              "id": "en",
+              "type": "text",
+              "value": "en"
+            },
+            {
+              "id": "af",
+              "type": "text",
+              "value": "af"
+            }
+          ]
+        },
+        {
+          "id": "confidence",
+          "title": "Input for confidence",
+          "description": "",
+          "type": "number"
+        },
+        {
+          "id": "recordedBy",
+          "title": "Recorded By",
+          "description": "Name of person who recorded the voice note",
+          "type": "short_text"
+        },
+        {
+          "id": "transcription",
+          "title": "Voice Note Transcription",
+          "description": "The transcribed text from the voice note",
+          "type": "long_text"
+        }
+      ],
+      "isEndPageEnabled": false
+    }
+  },
+  "actions": [
+    {
+      "name": "analyze-content",
+      "valid": true,
+      "displayName": "AI Content Analysis",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "pieceVersion": "1.0.0",
+        "actionName": "ai.ask",
+        "input": {
+          "input": "Voice Note Analysis:\n\nTranscription: {{ trigger[\"transcription\"] }}\nLanguage: {{ trigger[\"language\"] }}\nDuration: {{ trigger[\"duration\"] }} seconds\nConfidence: {{ trigger[\"confidence\"] }}\n\nPlease analyze this voice note and provide:\n1. Main topic/subject\n2. Key themes and concepts\n3. Important entities (people, places, organizations)\n4. Sentiment and tone\n5. Action items or tasks mentioned\n6. Priority level (high/medium/low)\n7. Suggested tags/keywords\n\nProvide a comprehensive analysis that will help categorize and organize this content.",
+          "prompt": "Analyze this voice note transcription and provide detailed insights"
+        }
+      }
+    },
+    {
+      "name": "categorize-content",
+      "valid": true,
+      "displayName": "AI Categorization",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "pieceVersion": "1.0.0",
+        "actionName": "ai.categorize",
+        "input": {
+          "input": "Voice Note Content: {{ trigger[\"transcription\"] }}\n\nLanguage: {{ trigger[\"language\"] }}\nAnalysis: {{ analyze-content[\"result\"] }}\n\nCategorize this voice note based on its content and context.",
+          "output": "personal,professional,meeting-notes,ideas-brainstorming,tasks-reminders,learning-education,project-updates,client-communication,technical-notes,creative-content"
+        }
+      }
+    },
+    {
+      "name": "extract-keywords",
+      "valid": true,
+      "displayName": "Extract Keywords & Entities",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "pieceVersion": "1.0.0",
+        "actionName": "ai.ask",
+        "input": {
+          "input": "Extract keywords and entities from this voice note transcription:\n\n{{ trigger[\"transcription\"] }}\n\nLanguage: {{ trigger[\"language\"] }}\n\nPlease provide:\n1. Top 10 keywords (comma-separated)\n2. Named entities (people, organizations, locations)\n3. Technical terms or jargon\n4. Action verbs and important concepts\n5. Dates, times, or deadlines mentioned\n\nFormat the response as structured data that can be easily parsed.",
+          "prompt": "Extract keywords and entities from this voice note"
+        }
+      }
+    },
+    {
+      "name": "categorization-branch",
+      "valid": true,
+      "displayName": "Route by Category",
+      "type": "BRANCH",
+      "settings": {},
+      "paths": [
+        {
+          "name": "tasks-path",
+          "valid": true,
+          "displayName": "Tasks & Reminders",
+          "type": "BRANCH_PATH",
+          "settings": {
+            "ruleset": {
+              "type": "CUSTOM",
+              "input": {
+                "type": "or",
+                "value": [
+                  {
+                    "type": "and",
+                    "value": [
+                      {
+                        "condition": "text_contains",
+                        "id": "d032e3b8-0739-4184-accc-172282ad94ec",
+                        "data": "{{ categorize-content[\"result\"] }}",
+                        "comparator": "tasks-reminders"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "actions": [
+            {
+              "name": "extract-tasks",
+              "valid": true,
+              "displayName": "Extract Action Items",
+              "type": "PIECE",
+              "settings": {
+                "pieceName": "@taskade/automade-internalpiece-openai",
+                "pieceVersion": "1.0.0",
+                "actionName": "ai.ask",
+                "input": {
+                  "input": "Extract actionable tasks from this voice note:\n\n{{ trigger[\"transcription\"] }}\n\nPlease identify:\n1. Specific tasks or action items\n2. Deadlines or due dates mentioned\n3. People to contact or follow up with\n4. Priority levels\n5. Dependencies or prerequisites\n\nFormat each task clearly with any relevant details.",
+                  "prompt": "Extract specific action items and tasks from this voice note"
+                }
+              }
+            },
+            {
+              "name": "create-task-record",
+              "valid": false,
+              "displayName": "Create Task Record",
+              "type": "PIECE",
+              "settings": {
+                "pieceName": "@taskade/automade-internalpiece-taskade",
+                "pieceVersion": "1.0.0",
+                "actionName": "task.create",
+                "input": {
+                  "content": "✅ Action Items from Voice Note\n\n🎤 Original Transcription:\n{{ trigger[\"transcription\"] }}\n\n📝 Extracted Tasks:\n{{ extract-tasks[\"result\"] }}\n\n🗣️ Language: {{ trigger[\"language\"] }}\n👤 Recorded by: {{ trigger[\"recordedBy\"] }}\n⏰ Needs Review: Yes",
+                  "position": "beforeend",
+                  "projectId": {
+                    "type": "flow-template-variable-input-type",
+                    "id": "pCJwqJ3XQTSi9vTL"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "general-path",
+          "valid": true,
+          "displayName": "General Content",
+          "type": "BRANCH_PATH",
+          "settings": {
+            "ruleset": {
+              "type": "FALLBACK"
+            }
+          },
+          "actions": [
+            {
+              "name": "create-general-record",
+              "valid": false,
+              "displayName": "Add to General Knowledge Base",
+              "type": "PIECE",
+              "settings": {
+                "pieceName": "@taskade/automade-internalpiece-taskade",
+                "pieceVersion": "1.0.0",
+                "actionName": "task.create",
+                "input": {
+                  "content": "🎤 Voice Note: General Content\n\n📝 Transcription:\n{{ trigger[\"transcription\"] }}\n\n🔍 AI Analysis:\n{{ analyze-content[\"result\"] }}\n\n🔍 Keywords & Entities:\n{{ extract-keywords[\"result\"] }}\n\n🏷️ Category: {{ categorize-content[\"result\"] }}\n🗣️ Language: {{ trigger[\"language\"] }}\n⏱️ Duration: {{ trigger[\"duration\"] }} seconds\n👤 Recorded by: {{ trigger[\"recordedBy\"] }}",
+                  "position": "beforeend",
+                  "projectId": {
+                    "type": "flow-template-variable-input-type",
+                    "id": "pCJwqJ3XQTSi9vTL"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "personal-path",
+          "valid": true,
+          "displayName": "Personal Content",
+          "type": "BRANCH_PATH",
+          "settings": {
+            "ruleset": {
+              "type": "CUSTOM",
+              "input": {
+                "type": "or",
+                "value": [
+                  {
+                    "type": "and",
+                    "value": [
+                      {
+                        "condition": "text_contains",
+                        "id": "d5b75c9f-504f-40df-96b4-3134d6e243c0",
+                        "data": "{{ categorize-content[\"result\"] }}",
+                        "comparator": "personal"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "and",
+                    "value": [
+                      {
+                        "condition": "text_contains",
+                        "id": "4bee7de6-1511-4eb4-b7f6-774236b33022",
+                        "data": "{{ categorize-content[\"result\"] }}",
+                        "comparator": "ideas-brainstorming"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "and",
+                    "value": [
+                      {
+                        "condition": "text_contains",
+                        "id": "f06d8faa-1c8b-450b-b848-996c77498fc4",
+                        "data": "{{ categorize-content[\"result\"] }}",
+                        "comparator": "creative-content"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "actions": [
+            {
+              "name": "create-personal-record",
+              "valid": false,
+              "displayName": "Add to Personal Knowledge Base",
+              "type": "PIECE",
+              "settings": {
+                "pieceName": "@taskade/automade-internalpiece-taskade",
+                "pieceVersion": "1.0.0",
+                "actionName": "task.create",
+                "input": {
+                  "content": "🎤 Personal Voice Note\n\n📝 Transcription:\n{{ trigger[\"transcription\"] }}\n\n🔍 AI Analysis:\n{{ analyze-content[\"result\"] }}\n\n🏷️ Category: {{ categorize-content[\"result\"] }}\n🗣️ Language: {{ trigger[\"language\"] }}\n⏱️ Duration: {{ trigger[\"duration\"] }} seconds\n👤 Recorded by: {{ trigger[\"recordedBy\"] }}",
+                  "position": "beforeend",
+                  "projectId": {
+                    "type": "flow-template-variable-input-type",
+                    "id": "pCJwqJ3XQTSi9vTL"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "professional-path",
+          "valid": true,
+          "displayName": "Professional Content",
+          "type": "BRANCH_PATH",
+          "settings": {
+            "ruleset": {
+              "type": "CUSTOM",
+              "input": {
+                "type": "or",
+                "value": [
+                  {
+                    "type": "and",
+                    "value": [
+                      {
+                        "condition": "text_contains",
+                        "id": "16b4c8c6-f9c3-4fd0-9ded-b7c39c72023e",
+                        "data": "{{ categorize-content[\"result\"] }}",
+                        "comparator": "professional"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "and",
+                    "value": [
+                      {
+                        "condition": "text_contains",
+                        "id": "308ede81-c27f-430e-8689-64a8db3314c0",
+                        "data": "{{ categorize-content[\"result\"] }}",
+                        "comparator": "meeting-notes"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "and",
+                    "value": [
+                      {
+                        "condition": "text_contains",
+                        "id": "665de7af-d514-452c-8f2b-a6c146c45ae4",
+                        "data": "{{ categorize-content[\"result\"] }}",
+                        "comparator": "project-updates"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "and",
+                    "value": [
+                      {
+                        "condition": "text_contains",
+                        "id": "ff8819e8-0786-4547-a669-298a647431eb",
+                        "data": "{{ categorize-content[\"result\"] }}",
+                        "comparator": "client-communication"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "actions": [
+            {
+              "name": "create-professional-record",
+              "valid": false,
+              "displayName": "Add to Professional Knowledge Base",
+              "type": "PIECE",
+              "settings": {
+                "pieceName": "@taskade/automade-internalpiece-taskade",
+                "pieceVersion": "1.0.0",
+                "actionName": "task.create",
+                "input": {
+                  "content": "🎤 Voice Note: Professional Content\n\n📝 Transcription:\n{{ trigger[\"transcription\"] }}\n\n🔍 AI Analysis:\n{{ analyze-content[\"result\"] }}\n\n🏷️ Category: {{ categorize-content[\"result\"] }}\n🗣️ Language: {{ trigger[\"language\"] }}\n⏱️ Duration: {{ trigger[\"duration\"] }} seconds\n📊 Confidence: {{ trigger[\"confidence\"] }}\n👤 Recorded by: {{ trigger[\"recordedBy\"] }}",
+                  "position": "beforeend",
+                  "projectId": {
+                    "type": "flow-template-variable-input-type",
+                    "id": "pCJwqJ3XQTSi9vTL"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "create-processing-summary",
+      "valid": true,
+      "displayName": "Create Processing Summary",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "pieceVersion": "1.0.0",
+        "actionName": "ai.generate",
+        "input": {
+          "input": "Voice Note Processing Complete!\n\nOriginal Transcription: {{ trigger[\"transcription\"] }}\nLanguage: {{ trigger[\"language\"] }}\nDuration: {{ trigger[\"duration\"] }} seconds\nConfidence: {{ trigger[\"confidence\"] }}\nRecorded by: {{ trigger[\"recordedBy\"] }}\n\nAI Analysis: {{ analyze-content[\"result\"] }}\nCategory: {{ categorize-content[\"result\"] }}\nKeywords: {{ extract-keywords[\"result\"] }}\n\nPlease create a brief, professional summary of how this voice note was processed and categorized.",
+          "prompt": "Create a concise processing summary for this voice note"
+        }
+      }
+    },
+    {
+      "name": "test-execution",
+      "valid": false,
+      "displayName": "Test Execution Log",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-taskade",
+        "pieceVersion": "1.0.0",
+        "actionName": "task.create",
+        "input": {
+          "content": "🧪 LIVE WORKFLOW TEST EXECUTION\n\n📅 Test Date: Live Test\n🎤 Voice Note Processing Results:\n\n📝 Original Transcription:\n{{ trigger[\"transcription\"] }}\n\n🔍 AI Content Analysis:\n{{ analyze-content[\"result\"] }}\n\n🏷️ AI Categorization Result:\n{{ categorize-content[\"result\"] }}\n\n🔑 Extracted Keywords & Entities:\n{{ extract-keywords[\"result\"] }}\n\n📊 Processing Summary:\n{{ create-processing-summary[\"result\"] }}\n\n✅ Test Status: COMPLETED\n🗣️ Language: {{ trigger[\"language\"] }}\n⏱️ Duration: {{ trigger[\"duration\"] }} seconds\n📊 Confidence: {{ trigger[\"confidence\"] }}\n👤 Recorded by: {{ trigger[\"recordedBy\"] }}",
+          "position": "beforeend",
+          "projectId": {
+            "type": "flow-template-variable-input-type",
+            "id": "pCJwqJ3XQTSi9vTL"
+          }
+        }
+      }
+    },
+    {
+      "name": "live-test-demo",
+      "valid": true,
+      "displayName": "Live Test Demonstration",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "pieceVersion": "1.0.0",
+        "actionName": "ai.ask",
+        "input": {
+          "input": "LIVE WORKFLOW TEST - Voice Note AI Processing\n\nTest Input Data:\n- Transcription: Professional meeting about TechCorp project approval\n- Language: English\n- Duration: 165 seconds\n- Confidence: 96%\n- Recorded by: Andries Liebenberg\n\nExpected Processing Flow:\n1. AI Content Analysis\n2. Smart Categorization\n3. Keyword Extraction\n4. Routing to Professional Knowledge Base\n5. Processing Summary Generation\n\nPlease simulate what the AI analysis results would look like for this professional meeting voice note about project approval, budget allocation, and team assignments.",
+          "prompt": "Simulate the live test execution of this voice note processing workflow"
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "type": "http_response",
+      "body": {
+        "type": "json",
+        "data": {
+          "type": "basic",
+          "payload": [
+            {
+              "success": "true"
+            },
+            {
+              "category": "{{ categorize-content[\"result\"] }}"
+            },
+            {
+              "analysis": "{{ analyze-content[\"result\"] }}"
+            },
+            {
+              "keywords": "{{ extract-keywords[\"result\"] }}"
+            },
+            {
+              "summary": "{{ create-processing-summary[\"result\"] }}"
+            },
+            {
+              "language": "{{ trigger[\"language\"] }}"
+            },
+            {
+              "confidence": "{{ trigger[\"confidence\"] }}"
+            },
+            {
+              "processedAt": "{{ trigger[\"recordedBy\"] }}"
+            }
+          ]
+        }
+      },
+      "key": "trigger"
+    }
+  ],
+  "variables": {
+    "pCJwqJ3XQTSi9vTL": {
+      "id": "pCJwqJ3XQTSi9vTL",
+      "rank": "V",
+      "type": "string",
+      "format": "taskade-project-id"
+    }
+  }
+}

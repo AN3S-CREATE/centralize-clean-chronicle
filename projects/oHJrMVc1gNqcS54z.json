@@ -1,0 +1,332 @@
+{
+  "root": {
+    "type": "root",
+    "children": [
+      {
+        "type": "text",
+        "id": "550e8400-e29b-41d4-a716-446655440013",
+        "text": {
+          "ops": [
+            {
+              "insert": "Drive Cleanup Pipeline"
+            },
+            {
+              "insert": "\n",
+              "attributes": {
+                "paragraph": true
+              }
+            }
+          ]
+        },
+        "format": null,
+        "collapsed": false,
+        "completed": false,
+        "children": [
+          {
+            "type": "text",
+            "id": "550e8400-e29b-41d4-a716-446655440014",
+            "text": {
+              "ops": [
+                {
+                  "insert": "🧽 Drive Cleanup Pipeline",
+                  "attributes": {}
+                },
+                {
+                  "insert": "\n",
+                  "attributes": {
+                    "paragraph": true
+                  }
+                }
+              ]
+            },
+            "format": {
+              "node": "h1",
+              "children": null
+            },
+            "collapsed": false,
+            "completed": false,
+            "children": [
+              {
+                "type": "text",
+                "id": "550e8400-e29b-41d4-a716-446655440015",
+                "text": {
+                  "ops": [
+                    {
+                      "insert": "This project tracks files identified for cleanup, manages the quarantine process, and provides safe deletion workflows with 14-30 day retention periods.",
+                      "attributes": {}
+                    },
+                    {
+                      "insert": "\n",
+                      "attributes": {
+                        "paragraph": true
+                      }
+                    }
+                  ]
+                },
+                "format": {
+                  "node": "text",
+                  "children": null
+                },
+                "collapsed": false,
+                "completed": false,
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "views": {
+      "table": {
+        "id": "table",
+        "type": "table",
+        "rank": "V",
+        "columns": {
+          "/text": {
+            "id": "/text",
+            "fieldPath": "/text",
+            "rank": "7",
+            "width": 480
+          },
+          "/attributes/agent": {
+            "id": "/attributes/agent",
+            "fieldPath": "/attributes/agent",
+            "rank": "A",
+            "hidden": true
+          },
+          "/attributes/date": {
+            "id": "/attributes/date",
+            "fieldPath": "/attributes/date",
+            "rank": "F"
+          },
+          "/attributes/assignee": {
+            "id": "/attributes/assignee",
+            "fieldPath": "/attributes/assignee",
+            "rank": "N"
+          },
+          "/attributes/comment": {
+            "id": "/attributes/comment",
+            "fieldPath": "/attributes/comment",
+            "rank": "V",
+            "hidden": true
+          },
+          "/attributes/reaction": {
+            "id": "/attributes/reaction",
+            "fieldPath": "/attributes/reaction",
+            "rank": "c",
+            "hidden": true
+          },
+          "/attributes/timer": {
+            "id": "/attributes/timer",
+            "fieldPath": "/attributes/timer",
+            "rank": "k",
+            "hidden": true
+          },
+          "/attributes/media": {
+            "id": "/attributes/media",
+            "fieldPath": "/attributes/media",
+            "rank": "s",
+            "hidden": true
+          },
+          "/attributes/created/at": {
+            "id": "/attributes/created/at",
+            "fieldPath": "/attributes/created/at",
+            "rank": "t",
+            "hidden": true
+          },
+          "/attributes/created/by": {
+            "id": "/attributes/created/by",
+            "fieldPath": "/attributes/created/by",
+            "rank": "u",
+            "hidden": true
+          },
+          "/attributes/updated/at": {
+            "id": "/attributes/updated/at",
+            "fieldPath": "/attributes/updated/at",
+            "rank": "vF",
+            "hidden": true
+          },
+          "/attributes/updated/by": {
+            "id": "/attributes/updated/by",
+            "fieldPath": "/attributes/updated/by",
+            "rank": "wF",
+            "hidden": true
+          },
+          "/attributes/completed/at": {
+            "id": "/attributes/completed/at",
+            "fieldPath": "/attributes/completed/at",
+            "rank": "x",
+            "hidden": true
+          },
+          "/attributes/completed/by": {
+            "id": "/attributes/completed/by",
+            "fieldPath": "/attributes/completed/by",
+            "rank": "y",
+            "hidden": true
+          },
+          "/attributes/@clnp01": {
+            "id": "/attributes/@clnp01",
+            "fieldPath": "/attributes/@clnp01",
+            "rank": "z",
+            "hidden": false
+          },
+          "/attributes/@clnp02": {
+            "id": "/attributes/@clnp02",
+            "fieldPath": "/attributes/@clnp02",
+            "rank": "zV",
+            "hidden": false
+          },
+          "/attributes/@clnp03": {
+            "id": "/attributes/@clnp03",
+            "fieldPath": "/attributes/@clnp03",
+            "rank": "zk",
+            "hidden": false
+          },
+          "/attributes/@clnp04": {
+            "id": "/attributes/@clnp04",
+            "fieldPath": "/attributes/@clnp04",
+            "rank": "zs",
+            "hidden": false
+          },
+          "/attributes/@clnp05": {
+            "id": "/attributes/@clnp05",
+            "fieldPath": "/attributes/@clnp05",
+            "rank": "zw",
+            "hidden": false
+          },
+          "/attributes/@clnp06": {
+            "id": "/attributes/@clnp06",
+            "fieldPath": "/attributes/@clnp06",
+            "rank": "zy",
+            "hidden": false
+          },
+          "/attributes/@clnp07": {
+            "id": "/attributes/@clnp07",
+            "fieldPath": "/attributes/@clnp07",
+            "rank": "zz",
+            "hidden": false
+          },
+          "/attributes/@clnp08": {
+            "id": "/attributes/@clnp08",
+            "fieldPath": "/attributes/@clnp08",
+            "rank": "zzV",
+            "hidden": false
+          },
+          "/attributes/@clnp09": {
+            "id": "/attributes/@clnp09",
+            "fieldPath": "/attributes/@clnp09",
+            "rank": "zzk",
+            "hidden": false
+          }
+        }
+      }
+    },
+    "fields": {
+      "@clnp01": {
+        "type": "string",
+        "displayName": "File Path"
+      },
+      "@clnp02": {
+        "type": "string",
+        "displayName": "File Hash"
+      },
+      "@clnp03": {
+        "type": "number",
+        "displayName": "File Size",
+        "render": {
+          "type": "text"
+        },
+        "format": {
+          "type": "decimal"
+        }
+      },
+      "@clnp04": {
+        "type": "DateTime",
+        "title": "Date Created"
+      },
+      "@clnp05": {
+        "type": "DateTime",
+        "title": "Date Modified"
+      },
+      "@clnp06": {
+        "type": "Select",
+        "displayName": "Duplicate Status",
+        "options": {
+          "unique": {
+            "id": "unique",
+            "name": "Unique",
+            "color": "#10b981",
+            "rank": "0"
+          },
+          "exact_duplicate": {
+            "id": "exact_duplicate",
+            "name": "Exact Duplicate",
+            "color": "#ef4444",
+            "rank": "1"
+          },
+          "near_duplicate": {
+            "id": "near_duplicate",
+            "name": "Near Duplicate",
+            "color": "#fbbf24",
+            "rank": "2"
+          }
+        }
+      },
+      "@clnp07": {
+        "type": "Select",
+        "displayName": "Recommended Action",
+        "options": {
+          "keep": {
+            "id": "keep",
+            "name": "Keep",
+            "color": "#10b981",
+            "rank": "0"
+          },
+          "quarantine": {
+            "id": "quarantine",
+            "name": "Move to Quarantine",
+            "color": "#fbbf24",
+            "rank": "1"
+          },
+          "delete": {
+            "id": "delete",
+            "name": "Safe to Delete",
+            "color": "#ef4444",
+            "rank": "2"
+          }
+        }
+      },
+      "@clnp08": {
+        "type": "DateTime",
+        "title": "Quarantine Date"
+      },
+      "@clnp09": {
+        "type": "Select",
+        "displayName": "Status",
+        "options": {
+          "active": {
+            "id": "active",
+            "name": "Active",
+            "color": "#10b981",
+            "rank": "0"
+          },
+          "quarantined": {
+            "id": "quarantined",
+            "name": "Quarantined",
+            "color": "#fbbf24",
+            "rank": "1"
+          },
+          "deleted": {
+            "id": "deleted",
+            "name": "Deleted",
+            "color": "#ef4444",
+            "rank": "2"
+          }
+        }
+      }
+    }
+  },
+  "preferences": {
+    "defaultView": "table"
+  }
+}

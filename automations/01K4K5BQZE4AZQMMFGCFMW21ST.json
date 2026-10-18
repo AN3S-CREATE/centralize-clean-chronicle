@@ -1,0 +1,200 @@
+{
+  "version": "2",
+  "flowTitle": "Google Drive Setup & Integration",
+  "trigger": {
+    "type": "FORM",
+    "displayName": "Google Drive Setup Trigger",
+    "settings": {
+      "description": "",
+      "inputs": [
+        {
+          "id": "setupType",
+          "title": "Input for setupType",
+          "description": "",
+          "type": "static_dropdown",
+          "options": [
+            {
+              "id": "full_setup",
+              "type": "text",
+              "value": "full_setup"
+            },
+            {
+              "id": "folders_only",
+              "type": "text",
+              "value": "folders_only"
+            }
+          ]
+        }
+      ],
+      "isEndPageEnabled": false
+    }
+  },
+  "actions": [
+    {
+      "name": "create-root-folder",
+      "valid": false,
+      "displayName": "Create AndriesHub Root Folder",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-piece-google-drive",
+        "pieceVersion": "1.0.0",
+        "actionName": "googledrive.createNewFolder",
+        "input": {
+          "folderName": "AndriesHub"
+        }
+      }
+    },
+    {
+      "name": "create-inbox-folder",
+      "valid": false,
+      "displayName": "Create Inbox Subfolder",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-piece-google-drive",
+        "pieceVersion": "1.0.0",
+        "actionName": "googledrive.createNewFolder",
+        "input": {
+          "folderId": "{{ create-root-folder[\"newFolderId\"] }}",
+          "folderName": "Inbox"
+        }
+      }
+    },
+    {
+      "name": "create-processed-folder",
+      "valid": false,
+      "displayName": "Create Processed Subfolder",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-piece-google-drive",
+        "pieceVersion": "1.0.0",
+        "actionName": "googledrive.createNewFolder",
+        "input": {
+          "folderId": "{{ create-root-folder[\"newFolderId\"] }}",
+          "folderName": "Processed"
+        }
+      }
+    },
+    {
+      "name": "create-master-docs-folder",
+      "valid": false,
+      "displayName": "Create Master-Documents Subfolder",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-piece-google-drive",
+        "pieceVersion": "1.0.0",
+        "actionName": "googledrive.createNewFolder",
+        "input": {
+          "folderId": "{{ create-root-folder[\"newFolderId\"] }}",
+          "folderName": "Master-Documents"
+        }
+      }
+    },
+    {
+      "name": "create-quarantine-folder",
+      "valid": false,
+      "displayName": "Create Quarantine Subfolder",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-piece-google-drive",
+        "pieceVersion": "1.0.0",
+        "actionName": "googledrive.createNewFolder",
+        "input": {
+          "folderId": "{{ create-root-folder[\"newFolderId\"] }}",
+          "folderName": "Quarantine"
+        }
+      }
+    },
+    {
+      "name": "create-archive-folder",
+      "valid": false,
+      "displayName": "Create Archive Subfolder",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-piece-google-drive",
+        "pieceVersion": "1.0.0",
+        "actionName": "googledrive.createNewFolder",
+        "input": {
+          "folderId": "{{ create-root-folder[\"newFolderId\"] }}",
+          "folderName": "Archive"
+        }
+      }
+    },
+    {
+      "name": "create-personal-folder",
+      "valid": false,
+      "displayName": "Create Personal Subfolder",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-piece-google-drive",
+        "pieceVersion": "1.0.0",
+        "actionName": "googledrive.createNewFolder",
+        "input": {
+          "folderId": "{{ create-root-folder[\"newFolderId\"] }}",
+          "folderName": "Personal"
+        }
+      }
+    },
+    {
+      "name": "create-professional-folder",
+      "valid": false,
+      "displayName": "Create Professional Subfolder",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-piece-google-drive",
+        "pieceVersion": "1.0.0",
+        "actionName": "googledrive.createNewFolder",
+        "input": {
+          "folderId": "{{ create-root-folder[\"newFolderId\"] }}",
+          "folderName": "Professional"
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "type": "http_response",
+      "body": {
+        "type": "json",
+        "data": {
+          "type": "basic",
+          "payload": [
+            {
+              "success": "true"
+            },
+            {
+              "message": "Google Drive folder structure created successfully"
+            },
+            {
+              "rootFolderId": "{{ create-root-folder[\"newFolderId\"] }}"
+            },
+            {
+              "inboxFolderId": "{{ create-inbox-folder[\"newFolderId\"] }}"
+            },
+            {
+              "processedFolderId": "{{ create-processed-folder[\"newFolderId\"] }}"
+            },
+            {
+              "masterDocsFolderId": "{{ create-master-docs-folder[\"newFolderId\"] }}"
+            },
+            {
+              "quarantineFolderId": "{{ create-quarantine-folder[\"newFolderId\"] }}"
+            },
+            {
+              "archiveFolderId": "{{ create-archive-folder[\"newFolderId\"] }}"
+            },
+            {
+              "personalFolderId": "{{ create-personal-folder[\"newFolderId\"] }}"
+            },
+            {
+              "professionalFolderId": "{{ create-professional-folder[\"newFolderId\"] }}"
+            },
+            {
+              "setupComplete": "true"
+            }
+          ]
+        }
+      },
+      "key": "trigger"
+    }
+  ]
+}

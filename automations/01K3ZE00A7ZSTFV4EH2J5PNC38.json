@@ -1,0 +1,104 @@
+{
+  "version": "2",
+  "flowTitle": "AI Description Generator",
+  "trigger": {
+    "valid": true,
+    "displayName": "Generate Description for Source",
+    "type": "MANUAL",
+    "settings": {
+      "inputUiInfo": {},
+      "paramsSchema": {
+        "type": "object",
+        "properties": {
+          "sourceUrl": {
+            "type": "string",
+            "description": "Input for sourceUrl"
+          },
+          "sourceType": {
+            "type": "string",
+            "anyOf": [
+              {
+                "const": "link",
+                "title": "Link"
+              },
+              {
+                "const": "file",
+                "title": "File"
+              }
+            ]
+          },
+          "sourceTitle": {
+            "type": "string",
+            "description": "Input for sourceTitle"
+          },
+          "sourceContent": {
+            "type": "string",
+            "description": "Input for sourceContent"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "actions": [
+    {
+      "name": "550e8400-e29b-41d4-a716-446655440031",
+      "valid": true,
+      "displayName": "Analyze Content with AI",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "pieceVersion": "1.0.0",
+        "actionName": "ai.generate",
+        "input": {
+          "input": "Source Title: {{ trigger[\"sourceTitle\"] }}\nSource URL: {{ trigger[\"sourceUrl\"] }}\nContent Preview: {{ trigger[\"sourceContent\"] }}",
+          "prompt": "You are an expert content analyst. Analyze the following source and generate a professional, concise description (2-3 sentences) that captures the key themes, purpose, and value for a knowledge management system.\n\nGenerate a description that:\n1. Summarizes the main topic and purpose\n2. Highlights key insights or value propositions  \n3. Uses professional, clear language\n4. Is exactly 2-3 sentences\n5. Focuses on what makes this content valuable for professional reference\n\nReturn only the description, no additional text."
+        }
+      }
+    },
+    {
+      "name": "550e8400-e29b-41d4-a716-446655440032",
+      "valid": true,
+      "displayName": "Extract Keywords with AI",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "pieceVersion": "1.0.0",
+        "actionName": "ai.generate",
+        "input": {
+          "input": "{{ trigger[\"sourceTitle\"] }} {{ trigger[\"sourceContent\"] }}",
+          "prompt": "Extract 3-5 relevant keywords from this content that would be useful for categorization and search. Return only the keywords separated by commas, no additional text."
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "type": "http_response",
+      "body": {
+        "type": "json",
+        "data": {
+          "type": "basic",
+          "payload": [
+            {
+              "description": "{{ 550e8400-e29b-41d4-a716-446655440031[\"result\"] }}"
+            },
+            {
+              "keywords": "{{ 550e8400-e29b-41d4-a716-446655440032[\"result\"] }}"
+            },
+            {
+              "category": "Professional"
+            },
+            {
+              "confidence": "0.95"
+            },
+            {
+              "sourceType": "{{ trigger[\"sourceType\"] }}"
+            }
+          ]
+        }
+      },
+      "key": "trigger"
+    }
+  ]
+}

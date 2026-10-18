@@ -1,0 +1,524 @@
+{
+  "root": {
+    "type": "root",
+    "children": [
+      {
+        "type": "text",
+        "id": "550e8400-e29b-41d4-a716-446655440004",
+        "text": {
+          "ops": [
+            {
+              "insert": "Information Units Store"
+            },
+            {
+              "insert": "\n",
+              "attributes": {
+                "paragraph": true
+              }
+            }
+          ]
+        },
+        "format": null,
+        "collapsed": false,
+        "completed": false,
+        "children": [
+          {
+            "type": "text",
+            "id": "550e8400-e29b-41d4-a716-446655440005",
+            "text": {
+              "ops": [
+                {
+                  "insert": "🧩 Information Units Store",
+                  "attributes": {}
+                },
+                {
+                  "insert": "\n",
+                  "attributes": {
+                    "paragraph": true
+                  }
+                }
+              ]
+            },
+            "format": {
+              "node": "h1",
+              "children": null
+            },
+            "collapsed": false,
+            "completed": false,
+            "children": [
+              {
+                "type": "text",
+                "id": "550e8400-e29b-41d4-a716-446655440006",
+                "text": {
+                  "ops": [
+                    {
+                      "insert": "This project stores individual information units extracted from source files. Each unit is tagged, categorized, and deduplicated to build the master knowledge base.",
+                      "attributes": {}
+                    },
+                    {
+                      "insert": "\n",
+                      "attributes": {
+                        "paragraph": true
+                      }
+                    }
+                  ]
+                },
+                "format": {
+                  "node": "text",
+                  "children": null
+                },
+                "collapsed": false,
+                "completed": false,
+                "children": []
+              },
+              {
+                "type": "text",
+                "id": "550e8400-e29b-41d4-a716-446655440029",
+                "text": {
+                  "ops": [
+                    {
+                      "insert": "AI Implementation Strategy - Executive Summary",
+                      "attributes": {}
+                    },
+                    {
+                      "insert": "\n",
+                      "attributes": {
+                        "paragraph": true
+                      }
+                    }
+                  ]
+                },
+                "format": {
+                  "node": "checkbox",
+                  "children": null
+                },
+                "collapsed": false,
+                "completed": false,
+                "attributes": {
+                  "@inf10": 0.92,
+                  "@inf11": "ai-strategy-001",
+                  "@inf01": "550e8400-e29b-41d4-a716-446655440027",
+                  "@inf12": 0.95,
+                  "@inf02": 1,
+                  "@inf13": {
+                    "type": "Select",
+                    "optionId": "canonical"
+                  },
+                  "@inf03": "Developed comprehensive AI implementation strategy for Fortune 500 companies, focusing on practical applications and ROI optimization.",
+                  "@inf14": {
+                    "type": "Select",
+                    "optionId": "professional"
+                  },
+                  "@inf04": "Andries Liebenberg, AI, Fortune 500, Strategy",
+                  "@inf15": "Career, Projects, Thought Leadership",
+                  "@inf05": "Artificial Intelligence, Business Strategy, Digital Transformation",
+                  "@inf16": {
+                    "type": "Select",
+                    "optionId": "public"
+                  },
+                  "@inf06": "AI, implementation, strategy, ROI, Fortune 500",
+                  "@inf07": {
+                    "type": "DateTime",
+                    "dateTime": {
+                      "date": "2023-06-15"
+                    }
+                  },
+                  "@inf08": "Q2 2023",
+                  "@inf09": 85
+                },
+                "children": []
+              },
+              {
+                "type": "text",
+                "id": "550e8400-e29b-41d4-a716-446655440030",
+                "text": {
+                  "ops": [
+                    {
+                      "insert": "Digital Transformation Case Study - Manufacturing",
+                      "attributes": {}
+                    },
+                    {
+                      "insert": "\n",
+                      "attributes": {
+                        "paragraph": true
+                      }
+                    }
+                  ]
+                },
+                "format": {
+                  "node": "checkbox",
+                  "children": null
+                },
+                "collapsed": false,
+                "completed": false,
+                "attributes": {
+                  "@inf10": 0.88,
+                  "@inf11": "digital-transform-001",
+                  "@inf01": "550e8400-e29b-41d4-a716-446655440028",
+                  "@inf12": 0.91,
+                  "@inf02": 2,
+                  "@inf13": {
+                    "type": "Select",
+                    "optionId": "canonical"
+                  },
+                  "@inf03": "Led digital transformation initiative for manufacturing company, resulting in 40% efficiency improvement and $2M cost savings.",
+                  "@inf14": {
+                    "type": "Select",
+                    "optionId": "professional"
+                  },
+                  "@inf04": "Andries Liebenberg, Manufacturing, Digital Transformation",
+                  "@inf15": "Projects, Case Studies",
+                  "@inf05": "Digital Transformation, Manufacturing, Efficiency",
+                  "@inf16": {
+                    "type": "Select",
+                    "optionId": "public"
+                  },
+                  "@inf06": "digital, transformation, manufacturing, efficiency, cost savings",
+                  "@inf07": {
+                    "type": "DateTime",
+                    "dateTime": {
+                      "date": "2023-09-20"
+                    }
+                  },
+                  "@inf08": "Q3 2023",
+                  "@inf09": 92
+                },
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "views": {
+      "table": {
+        "id": "table",
+        "type": "table",
+        "rank": "V",
+        "columns": {
+          "/text": {
+            "id": "/text",
+            "fieldPath": "/text",
+            "rank": "7",
+            "width": 480
+          },
+          "/attributes/agent": {
+            "id": "/attributes/agent",
+            "fieldPath": "/attributes/agent",
+            "rank": "A",
+            "hidden": true
+          },
+          "/attributes/date": {
+            "id": "/attributes/date",
+            "fieldPath": "/attributes/date",
+            "rank": "F"
+          },
+          "/attributes/assignee": {
+            "id": "/attributes/assignee",
+            "fieldPath": "/attributes/assignee",
+            "rank": "N"
+          },
+          "/attributes/comment": {
+            "id": "/attributes/comment",
+            "fieldPath": "/attributes/comment",
+            "rank": "V",
+            "hidden": true
+          },
+          "/attributes/reaction": {
+            "id": "/attributes/reaction",
+            "fieldPath": "/attributes/reaction",
+            "rank": "c",
+            "hidden": true
+          },
+          "/attributes/timer": {
+            "id": "/attributes/timer",
+            "fieldPath": "/attributes/timer",
+            "rank": "k",
+            "hidden": true
+          },
+          "/attributes/media": {
+            "id": "/attributes/media",
+            "fieldPath": "/attributes/media",
+            "rank": "s",
+            "hidden": true
+          },
+          "/attributes/created/at": {
+            "id": "/attributes/created/at",
+            "fieldPath": "/attributes/created/at",
+            "rank": "t",
+            "hidden": true
+          },
+          "/attributes/created/by": {
+            "id": "/attributes/created/by",
+            "fieldPath": "/attributes/created/by",
+            "rank": "u",
+            "hidden": true
+          },
+          "/attributes/updated/at": {
+            "id": "/attributes/updated/at",
+            "fieldPath": "/attributes/updated/at",
+            "rank": "vF",
+            "hidden": true
+          },
+          "/attributes/updated/by": {
+            "id": "/attributes/updated/by",
+            "fieldPath": "/attributes/updated/by",
+            "rank": "wF",
+            "hidden": true
+          },
+          "/attributes/completed/at": {
+            "id": "/attributes/completed/at",
+            "fieldPath": "/attributes/completed/at",
+            "rank": "x",
+            "hidden": true
+          },
+          "/attributes/completed/by": {
+            "id": "/attributes/completed/by",
+            "fieldPath": "/attributes/completed/by",
+            "rank": "y",
+            "hidden": true
+          },
+          "/attributes/@inf01": {
+            "id": "/attributes/@inf01",
+            "fieldPath": "/attributes/@inf01",
+            "rank": "z",
+            "hidden": false
+          },
+          "/attributes/@inf02": {
+            "id": "/attributes/@inf02",
+            "fieldPath": "/attributes/@inf02",
+            "rank": "zV",
+            "hidden": false
+          },
+          "/attributes/@inf03": {
+            "id": "/attributes/@inf03",
+            "fieldPath": "/attributes/@inf03",
+            "rank": "zk",
+            "hidden": false
+          },
+          "/attributes/@inf04": {
+            "id": "/attributes/@inf04",
+            "fieldPath": "/attributes/@inf04",
+            "rank": "zs",
+            "hidden": false
+          },
+          "/attributes/@inf05": {
+            "id": "/attributes/@inf05",
+            "fieldPath": "/attributes/@inf05",
+            "rank": "zw",
+            "hidden": false
+          },
+          "/attributes/@inf06": {
+            "id": "/attributes/@inf06",
+            "fieldPath": "/attributes/@inf06",
+            "rank": "zy",
+            "hidden": false
+          },
+          "/attributes/@inf07": {
+            "id": "/attributes/@inf07",
+            "fieldPath": "/attributes/@inf07",
+            "rank": "zz",
+            "hidden": false
+          },
+          "/attributes/@inf08": {
+            "id": "/attributes/@inf08",
+            "fieldPath": "/attributes/@inf08",
+            "rank": "zzV",
+            "hidden": false
+          },
+          "/attributes/@inf09": {
+            "id": "/attributes/@inf09",
+            "fieldPath": "/attributes/@inf09",
+            "rank": "zzk",
+            "hidden": false
+          },
+          "/attributes/@inf10": {
+            "id": "/attributes/@inf10",
+            "fieldPath": "/attributes/@inf10",
+            "rank": "zzs",
+            "hidden": false
+          },
+          "/attributes/@inf11": {
+            "id": "/attributes/@inf11",
+            "fieldPath": "/attributes/@inf11",
+            "rank": "zzw",
+            "hidden": false
+          },
+          "/attributes/@inf12": {
+            "id": "/attributes/@inf12",
+            "fieldPath": "/attributes/@inf12",
+            "rank": "zzy",
+            "hidden": false
+          },
+          "/attributes/@inf13": {
+            "id": "/attributes/@inf13",
+            "fieldPath": "/attributes/@inf13",
+            "rank": "zzz",
+            "hidden": false
+          },
+          "/attributes/@inf14": {
+            "id": "/attributes/@inf14",
+            "fieldPath": "/attributes/@inf14",
+            "rank": "zzzV",
+            "hidden": false
+          },
+          "/attributes/@inf15": {
+            "id": "/attributes/@inf15",
+            "fieldPath": "/attributes/@inf15",
+            "rank": "zzzk",
+            "hidden": false
+          },
+          "/attributes/@inf16": {
+            "id": "/attributes/@inf16",
+            "fieldPath": "/attributes/@inf16",
+            "rank": "zzzs",
+            "hidden": false
+          }
+        }
+      }
+    },
+    "fields": {
+      "@inf10": {
+        "type": "number",
+        "displayName": "Date Confidence",
+        "render": {
+          "type": "text"
+        },
+        "format": {
+          "type": "unit",
+          "config": {
+            "type": "standard",
+            "unit": "percent"
+          }
+        }
+      },
+      "@inf11": {
+        "type": "string",
+        "displayName": "Duplicate Group ID"
+      },
+      "@inf01": {
+        "type": "string",
+        "displayName": "Source File ID"
+      },
+      "@inf12": {
+        "type": "number",
+        "displayName": "Similarity Score",
+        "render": {
+          "type": "text"
+        },
+        "format": {
+          "type": "unit",
+          "config": {
+            "type": "standard",
+            "unit": "percent"
+          }
+        }
+      },
+      "@inf02": {
+        "type": "number",
+        "displayName": "Position in Source",
+        "render": {
+          "type": "text"
+        },
+        "format": {
+          "type": "decimal"
+        }
+      },
+      "@inf13": {
+        "type": "Select",
+        "displayName": "Canonical Flag",
+        "options": {
+          "canonical": {
+            "id": "canonical",
+            "name": "Canonical",
+            "color": "#10b981",
+            "rank": "0"
+          },
+          "redundant": {
+            "id": "redundant",
+            "name": "Redundant",
+            "color": "#ef4444",
+            "rank": "1"
+          }
+        }
+      },
+      "@inf03": {
+        "type": "string",
+        "displayName": "Unit Text"
+      },
+      "@inf14": {
+        "type": "Select",
+        "displayName": "Category",
+        "options": {
+          "professional": {
+            "id": "professional",
+            "name": "Professional",
+            "color": "#3b82f6",
+            "rank": "0"
+          },
+          "personal": {
+            "id": "personal",
+            "name": "Personal",
+            "color": "#8b5cf6",
+            "rank": "1"
+          }
+        }
+      },
+      "@inf04": {
+        "type": "string",
+        "displayName": "Entities"
+      },
+      "@inf15": {
+        "type": "string",
+        "displayName": "Subcategories"
+      },
+      "@inf05": {
+        "type": "string",
+        "displayName": "Topics"
+      },
+      "@inf16": {
+        "type": "Select",
+        "displayName": "Privacy Level",
+        "options": {
+          "public": {
+            "id": "public",
+            "name": "Public",
+            "color": "#10b981",
+            "rank": "0"
+          },
+          "private": {
+            "id": "private",
+            "name": "Private",
+            "color": "#ef4444",
+            "rank": "1"
+          }
+        }
+      },
+      "@inf06": {
+        "type": "string",
+        "displayName": "Keywords"
+      },
+      "@inf07": {
+        "type": "DateTime",
+        "title": "Canonical Date"
+      },
+      "@inf08": {
+        "type": "string",
+        "displayName": "Time Range"
+      },
+      "@inf09": {
+        "type": "number",
+        "displayName": "Timeline Index",
+        "render": {
+          "type": "text"
+        },
+        "format": {
+          "type": "decimal"
+        }
+      }
+    }
+  },
+  "preferences": {
+    "defaultView": "table"
+  }
+}
